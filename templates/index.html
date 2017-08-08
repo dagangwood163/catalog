@@ -1,0 +1,62 @@
+{% include "header.html" %}
+    <div class="container">
+            
+      <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+            <div class="list-group">
+              {% for city in cities %}
+                {% if city.name == display_city %}
+                  <a href="/city/{{city.id}}/attractions" class="list-group-item active">{{city.name}}</a>
+                {% else %}
+                  <a href="/city/{{city.id}}/attractions" class="list-group-item">{{city.name}}</a>
+                {% endif %}
+              {% endfor %}
+            </div>
+        </div><!--/.sidebar-offcanvas-->
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>         
+
+            
+          <div class="jumbotron text-center">
+            <h2>City Attractions List</h2>
+          </div>                     
+
+        {% with messages = get_flashed_messages() %}
+              {% if messages %}          
+                <ul>
+                {% for message in messages %}
+                    <li> <strong> <font color = "#DC143C"> {{ message }} </font> </strong> </li>
+                {% endfor %}
+                </ul>
+                {% endif %}
+        {% endwith %}     
+            
+          {% if 'username' in login_session: %}
+            <div class="col-md-6">
+            <p><a class="btn btn-primary" href="/attractions/create" role="button">Create attraction</a></p>
+            </div>
+          {% endif %}
+            <ul>
+            {% for attraction in attractions %}
+              <div class="col-md-9">
+                <h2>{{attraction.name}}</h2>
+                {% if display_city == '' %}
+                  <h4>({{attraction.city.name}})</h4>
+                {% endif %}
+                <p><a class="btn btn-default" href="/attractions/{{attraction.id}}" role="button">Details &raquo;</a></p>
+              </div><!--/.col-xs-6.col-lg-4-->
+            {% endfor %}
+             </ul>
+          </div><!--/row-->
+
+        </div><!--/.col-xs-12.col-sm-9-->
+      </div><!--/row-->
+
+      <hr>
+
+    </div><!--/.container-->
+    
+
+

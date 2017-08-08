@@ -1,0 +1,22 @@
+{% include "header.html" %}
+<div class = "container">
+<form action = "" method=post enctype=multipart/form-data>
+  <fieldset class="form-group">
+    <label for="name">Attraction name</label>
+    <input type="text" class="form-control" name="attraction-name" placeholder="Enter attraction name">
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="description">Description</label>
+    <input type="text" class="form-control" name="description" placeholder="Enter description for attraction">
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="citySelect">Select City</label>
+    <select class="form-control" name="attraction-city">
+    {% for city in cities %}
+      <option>{{city.name}}</option>
+    {% endfor %}
+    </select>
+  </fieldset>  
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>

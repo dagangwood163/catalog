@@ -1,0 +1,25 @@
+{% include "header.html" %}
+<div class = "container">
+<form action = "" method="post">
+  <div class="form-group">
+    <label for="name">Attraction name</label>
+    <input type="text" class="form-control" name="attraction-name" value="{{attraction.name}}">
+    <label for="description">Attraction Description</label>
+    <input type="text" class="form-control" name="description" value="{{attraction.description}}">
+    <label for="citySelect">Select City</label>
+    <select class="form-control" name="attraction-city">
+    {% for city in cities %}
+      {% if city.name == attraction.city.name %}
+        <option selected = "selected">{{city.name}}</option>
+      {% else %}
+        <option>{{city.name}}</option>
+      {% endif %}
+    {% endfor %}
+    </select>
+    
+	<button type="submit" class="btn btn-default" id="submit" type="submit">
+	<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Save</button>
+  </div>  
+                    
+</form>
+</div>
